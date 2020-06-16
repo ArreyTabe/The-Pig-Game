@@ -3,18 +3,7 @@
 
 var scores, roundScore, activePlayer, dice;
 
-roundScore = 0;
-scores = [0, 0];
-activePlayer = 0; //0 is for first player 1 for second player.
-
-
-document.querySelector('.dice').style.display = 'none';
-
-//set all scores to zero
-document.getElementById('score-0').innerHTML = '0';
-document.getElementById('current-0').textContent = '0';
-document.getElementById('score-1').innerHTML = '0';
-document.getElementById('current-1').innerHTML = '0';
+init();
 
 
 document.querySelector('.btn-roll').addEventListener('click', function () {
@@ -53,6 +42,10 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
     //check if player won the game
     if (scores[activePlayer] >= 10) {
         document.querySelector('#name-' + activePlayer).textContent = 'Winner!';
+        document.querySelector('.dice').style.display = 'none';
+        document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+        document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+
     } else {
         //nextPlayer
         nextPlayer();
@@ -73,6 +66,35 @@ function nextPlayer() {
     //document.querySelector('.player-1-panel').classList.add('active');
 
     document.querySelector('.dice').style.display = 'none';
+
+}
+
+
+document.querySelector('.btn-new').addEventListener('click', init);
+
+function init() {
+    roundScore = 0;
+    scores = [0, 0];
+    activePlayer = 0;
+
+    document.querySelector('.dice').style.display = 'none';
+
+    //set all scores to zero
+    document.getElementById('score-0').innerHTML = '0';
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('score-1').innerHTML = '0';
+    document.getElementById('current-1').innerHTML = '0';
+
+    document.getElementById('name-0').textContent = 'player 1';
+    document.getElementById('name-1').textContent = 'player 2';
+
+    document.querySelector('.player-0-panel').classList.remove('winner');
+    document.querySelector('.player-1-panel').classList.remove('winner');
+    document.querySelector('.player-0-panel').classList.remove('active');
+    document.querySelector('.player-1-panel').classList.remove('active');
+    document.querySelector('.player-0-panel').classList.add('active');
+
+
 
 }
 
