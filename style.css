@@ -14,7 +14,7 @@
      width: 160px;
      text-transform: uppercase;
  }
-
+.final-score:focus{outline: none;}
 
 * {
     margin: 0;
